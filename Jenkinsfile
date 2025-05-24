@@ -54,6 +54,14 @@ pipeline {
                 sh 'sudo docker push ${IMAGE_TAG}'
                 echo "Docker image push successfully"
             }
+        }
+
+        stage('Docker run container')
+        {
+            steps{
+                sh "sudo docker run -p 5000:5000 ${IMAGE_TAG}"
+                sh "sudo docker ps"
+            }
         }      
     }
 }
